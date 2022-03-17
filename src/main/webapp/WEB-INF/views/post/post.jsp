@@ -18,17 +18,18 @@
     <div class="row">
         <h4>Форум job4j</h4>
     </div>
-    <div class="row">
+    <tr class="row">
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">Тема - ${post.name}</th>
+                <th><a href="<c:url value='/edit?id=${post.id}'/>">Изменить</a></th>
             </tr>
             </thead>
             <tbody>
-            <div>
-                ${post.description}
-            </div>
+            <tr>
+               <td>${post.description}</td>
+            </tr>
             </tbody>
         </table>
     </div>

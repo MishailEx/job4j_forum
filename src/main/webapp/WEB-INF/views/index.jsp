@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,13 +23,15 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Тема</th>
+                <th scope="col" style="width: 300px">Тема</th>
+                <th scope="col">Создан</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${posts}" var="post">
                 <tr>
-                    <td><a href="post?id=${post.id}"><c:out value="${post.name}"/></a></td>
+                    <td><a href="/post?id=${post.id}"><c:out value="${post.name}"/></a></td>
+                    <td><fmt:formatDate value='${post.created}' type='time' pattern='yyyy-MM-dd'/></td>
                 </tr>
             </c:forEach>
             </tbody>
