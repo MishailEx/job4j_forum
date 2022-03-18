@@ -1,6 +1,5 @@
 package ru.job4j.forum.control;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,8 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@RequestParam("id") int id, @ModelAttribute Post post) {
-        posts.save(post, id);
+        post.setId(id);
+        posts.save(post);
         return "redirect:/";
     }
 

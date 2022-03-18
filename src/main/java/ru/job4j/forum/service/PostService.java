@@ -27,8 +27,7 @@ public class PostService {
         return posts.findById(id).get();
     }
 
-    public Post save(Post post, int id) {
-        post.setId(id);
+    public Post save(Post post) {
         post.setCreated(new Date());
         return posts.save(post);
     }
