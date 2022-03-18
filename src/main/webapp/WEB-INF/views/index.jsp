@@ -23,7 +23,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col" style="width: 300px">Тема</th>
+                <th scope="col" style="width: 300px">Тема    <a href="<c:url value="/post?id=0"/>">Создать тему</a></th>
                 <th scope="col">Создан</th>
             </tr>
             </thead>

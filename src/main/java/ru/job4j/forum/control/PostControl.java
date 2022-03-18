@@ -20,8 +20,11 @@ public class PostControl {
 
     @GetMapping("/post")
     public String post(@RequestParam("id") int id, Model model) {
-        model.addAttribute("post", posts.findById(id));
-        return "post/post";
+        if(id != 0) {
+            model.addAttribute("post", posts.findById(id));
+            return "post/post";
+        }
+        return "post/edit";
     }
 
     @PostMapping("/save")

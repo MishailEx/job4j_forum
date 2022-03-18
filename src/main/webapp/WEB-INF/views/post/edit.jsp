@@ -2,7 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
-<form name='login' action="<c:url value='/save?id=${post.id}'/>" method='POST'>
+<c:if test="${empty post.id}">
+    <c:set var="id" scope="session" value="0" />
+</c:if>
+<c:if test="${not empty post.id}">
+    <c:set var="id" scope="session" value="${post.id}" />
+</c:if>
+<form name='login' action="<c:url value='/save?id=${id}'/>" method='POST'>
     <table>
         <tr>
             <td>name:</td>
