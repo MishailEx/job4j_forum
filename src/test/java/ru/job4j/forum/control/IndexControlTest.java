@@ -11,11 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.forum.Main;
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
+@TestPropertySource("/application.properties")
+@Sql(value = {"/before-tests.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = {"/after-tests.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class IndexControlTest {
 
     @Autowired
@@ -28,14 +33,6 @@ public class IndexControlTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
-    }
-
-    @Test
-    public void login() throws Exception {
-        this.mockMvc.perform(formLogin().user("aaa").password("aaa"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
     }
 
     @Test
