@@ -31,5 +31,16 @@ public class PostService {
         post.setCreated(new Date());
         return posts.save(post);
     }
+
+    public void edit(int id, Post post) {
+        Post old = posts.findById(id).get();
+        if (!post.getName().isEmpty()) {
+            old.setName(post.getName());
+        }
+        if (!post.getDescription().isEmpty()) {
+            old.setDescription(post.getDescription());
+        }
+        posts.save(old);
+    }
 }
 

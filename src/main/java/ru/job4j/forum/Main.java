@@ -19,7 +19,7 @@ public class Main extends SpringBootServletInitializer {
     @Bean
     public SpringLiquibase liquibase(DataSource ds) {
         SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
+        liquibase.setChangeLog("classpath:db/liquibase-changelog.yaml");
         liquibase.setDataSource(ds);
         return liquibase;
     }

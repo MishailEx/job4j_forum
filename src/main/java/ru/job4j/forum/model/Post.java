@@ -1,7 +1,9 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +15,12 @@ public class Post {
     private String name;
     private String description;
     private Date created;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "post_id")
+    private List<Message> messages = new ArrayList<>();
 
+    public Post() {
+    }
 
     public static Post of(String name, String description) {
         Post post = new Post();
@@ -52,6 +59,10 @@ public class Post {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
     }
 
     @Override
